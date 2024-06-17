@@ -1,0 +1,9 @@
+#[MESSAGE] to send a message to player
+#[CONSOLE] to execute a command in server
+#[DISPATCH] to execute a proxy command(You need have euphoria)
+"1":
+  - "[MESSAGE] &fu&7n&8o"
+  - "[CONSOLE] gamemode creative <player>"
+"2":
+  - "[MESSAGE] &fd&7o&8s"
+  - "[CONSOLE] gamemode creative <player>"

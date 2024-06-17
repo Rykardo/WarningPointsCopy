@@ -1,0 +1,11 @@
+name: WarningPoints
+version: '${project.version}'
+main: me.ishyro.core.WarningPoints
+api-version: '1.20'
+prefix: WP
+authors: [iShyro]
+description: Plugin to manage warning points and execute sanctions
+commands:
+  warnpoints:
+    description: Este comando sirve para sumar puntos a un jugador de advertencias.
+    usage: /warnpoints <subcommand> <player> <args>
