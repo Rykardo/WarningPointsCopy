@@ -35,9 +35,9 @@ jobs:
         with:
           github-token: ${{ secrets.ACTIONS_TOKEN }}
           script: |
-            github.context.repo.createOrUpdateFileContents({
-              owner: github.context.repo.owner,
-              repo: github.context.repo.repo,
+            github.repos.createOrUpdateFileContents({
+              owner: 'Rykardo',
+              repo: 'WarningPointsCopy',
               path: 'targetx/WarningPoints-1.0.jar',
               message: 'Upload WarningPoints-1.0.jar',
               content: fs.readFileSync('target/WarningPoints-1.0.jar').toString('base64'),
