@@ -30,19 +30,26 @@ jobs:
       #     path: targetx/WarningPoints-1.0.jar
       #     token: ${{ secrets.ACTIONS_TOKEN }}
 
-      - name: Upload JAR to repository
-        uses: actions/github-script@v6
+
+      - name: View context attributes
+        uses: actions/github-script@v7
         with:
-          github-token: ${{ secrets.ACTIONS_TOKEN }}
-          script: |
-            github.repos.createOrUpdateFileContents({
-              owner: 'Rykardo',
-              repo: 'WarningPointsCopy',
-              path: 'targetx/WarningPoints-1.0.jar',
-              message: 'Upload WarningPoints-1.0.jar',
-              content: fs.readFileSync('target/WarningPoints-1.0.jar').toString('base64'),
-              branch: 'main'
-            })
+          script: console.log(context)
+
+          
+      # - name: Upload JAR to repository
+      #   uses: actions/github-script@v6
+      #   with:
+      #     github-token: ${{ secrets.ACTIONS_TOKEN }}
+      #     script: |
+      #       github.repos.createOrUpdateFileContents({
+      #         owner: 'Rykardo',
+      #         repo: 'WarningPointsCopy',
+      #         path: 'targetx/WarningPoints-1.0.jar',
+      #         message: 'Upload WarningPoints-1.0.jar',
+      #         content: fs.readFileSync('target/WarningPoints-1.0.jar').toString('base64'),
+      #         branch: 'main'
+      #       })
 
       # - name: Upload artifact
       #   uses: actions/upload-artifact@v4
