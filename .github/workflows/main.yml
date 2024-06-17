@@ -36,7 +36,7 @@ jobs:
         with:
           script: |
             const repo = context.repo;
-            const filePath = 'targetx/WarningPoints-1.0.jar';
+            const filePath = github.utils.readFile('targetx/WarningPoints-1.0.jar');
             const fileContent = fs.readFileSync('target/WarningPoints-1.0.jar');
             repo.createOrUpdateFileContents(filePath, fileContent, 'Upload WarningPoints-1.0.jar', 'main');
 
