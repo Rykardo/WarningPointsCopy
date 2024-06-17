@@ -35,7 +35,7 @@ jobs:
         with:
           github-token: ${{ secrets.ACTIONS_TOKEN }}
           script: |
-            github.api.repos.createOrUpdateFileContents({
+            github.context.repo.createOrUpdateFileContents({
               owner: github.context.repo.owner,
               repo: github.context.repo.repo,
               path: 'targetx/WarningPoints-1.0.jar',
