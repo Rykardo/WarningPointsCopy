@@ -1,0 +1,22 @@
+name: Build and Deploy JAR
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Maven
+        uses: actions/setup-java@v2
+        with:
+          java-version: '1.8'
+          distribution: 'adopt'
+
+      - name: Build with Maven
+        run: mvn clean package
