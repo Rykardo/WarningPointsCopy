@@ -22,14 +22,28 @@ jobs:
         run: |
           mvn clean package
 
+      # - name: Upload JAR to repository
+      #   uses: actions/upload-file@v1
+      #   with:
+      #     repository: ${{ github.repository }}
+      #     file: target/WarningPoints-1.0.jar
+      #     path: targetx/WarningPoints-1.0.jar
+      #     token: ${{ secrets.ACTIONS_TOKEN }}
+
       - name: Upload JAR to repository
-        uses: actions/upload-file@v1
+        uses: actions/github-script@v6
         with:
-          repository: ${{ github.repository }}
-          file: target/WarningPoints-1.0.jar
-          path: targetx/WarningPoints-1.0.jar
-          token: ${{ secrets.ACTIONS_TOKEN }}
-          
+          github-token: ${{ secrets.ACTIONS_TOKEN }}
+          script: |
+            github.repos.createOrUpdateFileContents({
+              owner: github.context.repo.owner,
+              repo: github.context.repo.repo,
+              path: 'targetx/WarningPoints-1.0.jar',
+              message: 'Upload WarningPoints-1.0.jar',
+              content: fs.readFileSync('target/WarningPoints-1.0.jar').toString('base64'),
+              branch: 'main'
+            })
+
       # - name: Upload artifact
       #   uses: actions/upload-artifact@v4
       #   with:
