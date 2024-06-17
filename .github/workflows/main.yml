@@ -18,11 +18,17 @@ jobs:
           java-version: '8'
           distribution: 'temurin'
 
-      - name: Build with Maven
-        run: mvn clean package
-      
-      - name: Save JAR file
+      - name: Build and package
+        run: |
+          mvn clean package
+
+      - name: Move JAR to targetx folder
+        run: |
+          mkdir -p targetx
+          mv target/WarningPoints-1.0.jar targetx/
+
+      - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
-          name: warning-points-jar
+          name: WarningPoints
           path: targetx/WarningPoints-1.0.jar
