@@ -35,14 +35,8 @@ jobs:
 
 
       - name: Deploy to SFTP
-        uses: appleboy/sftp-deploy@v1
-        with:
-          host: ${{ env.SSH_HOST }}
-          port: 22
-          username: ${{ env.SSH_USER }}
-          password: ${{ env.SSH_PASS }}
-          local_path: target/WarningPoints-1.0.jar
-          remote_path: /plugins/WarningPoints-TEST.jar
+        run: |
+          curl -T target/WarningPoints-1.0.jar --sftp://${{ env.SSH_USER }}:${{ env.SSH_PASS }}@${{ env.SSH_HOST }}:22/plugins
 
 
       # - name: SFTP uploader
