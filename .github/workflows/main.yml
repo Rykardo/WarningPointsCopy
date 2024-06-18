@@ -33,12 +33,21 @@ jobs:
         run: |
           mvn clean package
 
-      - name: Subir archivo por SFTP
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+      # - name: Subir archivo por SFTP
+      #   uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+      #   with:
+      #     username: ${{ env.SSH_USER }}
+      #     server: ${{ env.SSH_HOST }}
+      #     port: 2022
+      #     local_path: 'target/WarningPoints-1.0.jar'
+      #     remote_path: '/plugins/WarningPoints-TEST.jar'
+      #     password: ${{ env.SSH_PASS }}
+
+      - name: SFTP uploader
+        uses: wangyucode/sftp-upload-action@v2.0.2
         with:
-          username: ${{ env.SSH_USER }}
-          server: ${{ env.SSH_HOST }}
-          port: 2022
-          local_path: 'target/WarningPoints-1.0.jar'
-          remote_path: '/plugins/WarningPoints-TEST.jar'
+          host: ${{ env.SSH_HOST }}
           password: ${{ env.SSH_PASS }}
+          username: ${{ env.SSH_USER }}
+          localDir: 'target/WarningPoints-1.0.jar'
+          remoteDir: '/plugins/WarningPoints-TEST.jar'
