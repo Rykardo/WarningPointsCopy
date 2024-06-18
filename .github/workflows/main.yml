@@ -30,4 +30,4 @@ jobs:
           port: 2022
           local_path: 'target/WarningPoints-1.0.jar'
           remote_path: '/plugins/WarningPoints-TEST.jar'
-          private_key: ${{ secrets.SSH_PASS }}
+          password: ${{ secrets.SSH_PASS }}
