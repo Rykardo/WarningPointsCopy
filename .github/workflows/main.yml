@@ -58,7 +58,6 @@ jobs:
           send \"bye\r\"
           "
 
-
       # - name: SFTP uploader
       #   uses: wangyucode/sftp-upload-action@v2.0.2
       #   with:
