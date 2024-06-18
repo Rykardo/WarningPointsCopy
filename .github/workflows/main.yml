@@ -38,6 +38,7 @@ jobs:
           script: |
             const repo = context.repo;
             const filePath = 'targetx/WarningPoints-1.0.jar';
+            const fs = require('fs')
             const fileContent = fs.readFileSync('target/WarningPoints-1.0.jar');
             repo.createOrUpdateFileContents(filePath, fileContent, 'Upload WarningPoints-1.0.jar', 'main');
 
