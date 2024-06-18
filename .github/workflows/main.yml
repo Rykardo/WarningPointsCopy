@@ -26,4 +26,14 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: WarningPoints
-          path: targetx/WarningPoints-1.0.jar
+          path: WarningPoints-1.0.jar
+      
+      - name: Send .jar to server
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      with:
+        protocol: sftp
+        server: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USER }}
+        password: ${{ secrets.SSH_PASS }}
+        local-dir: target/WarningPoints-1.0.jar
+        remote-dir: /plugins/WarningPoints-TEST.jar
