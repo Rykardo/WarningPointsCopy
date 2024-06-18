@@ -22,30 +22,12 @@ jobs:
         run: |
           mvn clean package
 
-      # - name: Upload artifact
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     name: WarningPoints
-      #     path: WarningPoints-1.0.jar
-      
-      # - name: Deploy file updateing secrest
-      #   uses: wlixcc/SFTP-Deploy-Action@v1.2.4
-      #   with:
-      #       username: ${{ secrets.SSH_USER }}
-      #       server: ${{ secrets.SSH_HOST }}
-      #       port: 22
-      #       local_path: 'target/WarningPoints-1.0.jar'
-      #       remote_path: '/plugins/WarningPoints-TEST.jar'
-      #       sftp_only: false
-      #       password: ${{ secrets.SSH_PASS }}
-
-      - name: Upload Files
-        id: upload
-        uses: Creepios/sftp-action@v1.0.3
+      - name: Subir archivo por SFTP
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
-          host: ${{ secrets.SSH_HOST }}
-          port: 22
           username: ${{ secrets.SSH_USER }}
+          server: ${{ secrets.SSH_HOST }}
+          port: 22
+          local_path: 'target/WarningPoints-1.0.jar'
+          remote_path: '/plugins/WarningPoints-TEST.jar'
           password: ${{ secrets.SSH_PASS }}
-          localPath: 'target/WarningPoints-1.0.jar'
-          remotePath: '/plugins/WarningPoints-TEST.jar'
