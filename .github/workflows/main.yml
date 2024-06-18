@@ -33,6 +33,15 @@ jobs:
         run: |
           mvn clean package
 
+
+      - name: Create SSH directory
+        run: |
+          mkdir -p ~/.ssh
+
+      - name: Add host key to known hosts
+        run: |
+          ssh-keyscan -t rsa {{ env.SSH_HOST }} >> ~/.ssh/known_hosts
+
       - name: Install expect
         run: |
           sudo apt-get update && sudo apt-get install -y expect
