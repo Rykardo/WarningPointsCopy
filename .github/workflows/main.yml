@@ -36,7 +36,15 @@ jobs:
 
       - name: Deploy to SFTP
         run: |
-          curl -T target/WarningPoints-1.0.jar sftp://${{env.SSH_USER}}:${{env.SSH_PASS}}@${{env.SSH_HOST}}:22/plugins
+          expect -c "
+          spawn sftp ${{ env.SSH_USER }}@${{ env.SSH_HOST }}
+          expect \"password:\"
+          send \"${{ env.SSH_PASS }}\r\"
+          expect \"sftp>\"
+          send \"put target/WarningPoints-1.0.jar /plugins\r\"
+          expect \"sftp>\"
+          send \"bye\r\"
+          "
 
 
       # - name: SFTP uploader
