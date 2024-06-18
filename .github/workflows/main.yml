@@ -34,15 +34,16 @@ jobs:
           mvn clean package
 
 
-      - name: Add host key to known hosts
-        run: |
-          ssh-keyscan -t rsa ${{ env.SSH_HOST }} >> ~/.ssh/known_hosts
-
       - name: Deploy to SFTP
-        run: |
-          sshpass -p ${{ env.SSH_PASS }} sftp -o "Port=22" ${{ env.SSH_USER }}@${{ env.SSH_HOST }} << EOF
-          put target/my-jar-file.jar /plugins
-          EOF
+        uses: appleboy/sftp-deploy@v1
+        with:
+          host: ${{ env.SSH_HOST }}
+          port: 22
+          username: ${{ env.SSH_USER }}
+          password: ${{ env.SSH_PASS }}
+          local_path: target/WarningPoints-1.0.jar
+          remote_path: /plugins/WarningPoints-TEST.jar
+
 
       # - name: SFTP uploader
       #   uses: wangyucode/sftp-upload-action@v2.0.2
