@@ -28,7 +28,7 @@ jobs:
       #     name: WarningPoints
       #     path: WarningPoints-1.0.jar
       
-      - name: Deploy file
+      - name: Deploy file test
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
             username: ${{ secrets.SSH_USER }}
