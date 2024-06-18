@@ -25,9 +25,9 @@ jobs:
       - name: Subir archivo por SFTP
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
-          username: ${{ secrets.SSH_USER }}
-          server: ${{ secrets.SSH_HOST }}
+          username: ${ secrets.SSH_USER }
+          server: ${ secrets.SSH_HOST }
           port: 2022
           local_path: 'target/WarningPoints-1.0.jar'
           remote_path: '/plugins/WarningPoints-TEST.jar'
-          password: ${{ secrets.SSH_PASS }}
+          password: ${ secrets.SSH_PASS }
