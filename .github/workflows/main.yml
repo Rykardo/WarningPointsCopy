@@ -8,9 +8,15 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+
+    env:
+      SSH_USER: ${{ secrets.SSH_USER }}
+      SSH_HOST: ${{ secrets.SSH_HOST }}
+      SSH_PASS: ${{ secrets.SSH_PASS }}
+
     steps:
       - name: check variables
-        if: ${{ secrets.SSH_PASS }} != '' && ${{ secrets.SSH_USER }} != '' && ${{ secrets.SSH_HOST }} != ''
+        if: ${{env.SSH_PASS}} != '' && ${{env.SSH_USER}} != '' && ${{env.SSH_HOST}} != ''
         run: |
           echo "Variables de entorno no vacias"
 
