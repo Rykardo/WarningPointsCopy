@@ -33,6 +33,11 @@ jobs:
         run: |
           mvn clean package
 
+
+      - name: Add host key to known hosts
+        run: |
+          ssh-keyscan -t rsa ${{ env.SSH_HOST }} >> ~/.ssh/known_hosts
+
       - name: Deploy to SFTP
         run: |
           sshpass -p ${{ env.SSH_PASS }} sftp -o "Port=22" ${{ env.SSH_USER }}@${{ env.SSH_HOST }} << EOF
