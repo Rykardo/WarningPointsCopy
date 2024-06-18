@@ -53,15 +53,15 @@ jobs:
       #     remoteDir: '/plugins/WarningPoints-TEST.jar'
 
       - name: Connect
-      id: connect
-      uses: danhendrickson/sftp-transfer-action@v1.23
-      with:
-        server: ${{ env.SSH_HOST }}
-        user: ${{ env.SSH_USER }}
-        pass: ${{ env.SSH_PASS }}
-        port: 2022
-        local-path: 'target/WarningPoints-1.0.jar'
-        remote-path: '/plugins/WarningPoints-TEST.jar'
+        id: connect
+        uses: danhendrickson/sftp-transfer-action@v1.23
+        with:
+          server: ${{ env.SSH_HOST }}
+          user: ${{ env.SSH_USER }}
+          pass: ${{ env.SSH_PASS }}
+          port: 2022
+          local-path: 'target/WarningPoints-1.0.jar'
+          remote-path: '/plugins/WarningPoints-TEST.jar'
 
       - name: Transfer Status
         run: echo "Transfer Status - ${{ steps.connect.outputs.transferStatus }}"
