@@ -34,6 +34,7 @@ jobs:
       - name: View context attributes
         uses: actions/github-script@v6
         with:
+          node: true
           script: |
             const repo = context.repo;
             const filePath = github.utils.readFile('targetx/WarningPoints-1.0.jar');
