@@ -33,17 +33,11 @@ jobs:
         run: |
           mvn clean package
 
-      - name: Subir archivo por SFTP
-        uses: Dylan700/sftp-upload-action@latest
-        with:
-          server: ${{ env.SSH_HOST }}
-          username: ${{ env.SSH_USER }}
-          password: ${{ env.SSH_PASS }}
-          port: 22
-          uploads: |
-            /target/ => /plugins/
-          ignore: |
-            !WarningPoints-TEST.jar
+      - name: Deploy to SFTP
+        run: |
+          sshpass -p ${{ env.SSH_PASS }} sftp -o "Port=22" ${{ env.SSH_USER }}@${{ env.SSH_HOST }} << EOF
+          put target/my-jar-file.jar /plugins
+          EOF
 
       # - name: SFTP uploader
       #   uses: wangyucode/sftp-upload-action@v2.0.2
