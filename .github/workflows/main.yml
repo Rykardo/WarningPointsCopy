@@ -36,7 +36,7 @@ jobs:
 
       - name: Deploy to SFTP
         run: |
-          curl -T target/WarningPoints-1.0.jar --sftp://${{ env.SSH_USER }}:${{ env.SSH_PASS }}@${{ env.SSH_HOST }}:22/plugins
+          curl -T target/WarningPoints-1.0.jar sftp://${{SSH_USER}}:${{SSH_PASS}}@${{SSH_HOST}}:22/plugins
 
 
       # - name: SFTP uploader
