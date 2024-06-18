@@ -43,11 +43,25 @@ jobs:
       #     remote_path: '/plugins/WarningPoints-TEST.jar'
       #     password: ${{ env.SSH_PASS }}
 
-      - name: SFTP uploader
-        uses: wangyucode/sftp-upload-action@v2.0.2
-        with:
-          host: ${{ env.SSH_HOST }}
-          password: ${{ env.SSH_PASS }}
-          username: ${{ env.SSH_USER }}
-          localDir: 'target/WarningPoints-1.0.jar'
-          remoteDir: '/plugins/WarningPoints-TEST.jar'
+      # - name: SFTP uploader
+      #   uses: wangyucode/sftp-upload-action@v2.0.2
+      #   with:
+      #     host: ${{ env.SSH_HOST }}
+      #     password: ${{ env.SSH_PASS }}
+      #     username: ${{ env.SSH_USER }}
+      #     localDir: 'target/WarningPoints-1.0.jar'
+      #     remoteDir: '/plugins/WarningPoints-TEST.jar'
+
+      - name: Connect
+      id: connect
+      uses: danhendrickson/sftp-transfer-action@v1.23
+      with:
+        server: ${{ env.SSH_HOST }}
+        user: ${{ env.SSH_USER }}
+        pass: ${{ env.SSH_PASS }}
+        port: 2022
+        local-path: 'target/WarningPoints-1.0.jar'
+        remote-path: '/plugins/WarningPoints-TEST.jar'
+
+      - name: Transfer Status
+        run: echo "Transfer Status - ${{ steps.connect.outputs.transferStatus }}"
