@@ -22,18 +22,19 @@ jobs:
         run: |
           mvn clean package
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: WarningPoints
-          path: WarningPoints-1.0.jar
+      # - name: Upload artifact
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: WarningPoints
+      #     path: WarningPoints-1.0.jar
       
-      - name: Send .jar to server
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      - name: Deploy file
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
-          protocol: sftp
-          server: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          password: ${{ secrets.SSH_PASS }}
-          local-dir: target/WarningPoints-1.0.jar
-          remote-dir: /plugins/WarningPoints-TEST.jar
+            username: ${{ secrets.SSH_USER }}
+            server: ${{ secrets.SSH_HOST }}
+            port: 22
+            local_path: 'target/WarningPoints-1.0.jar'
+            remote_path: '/plugins/WarningPoints-TEST.jar'
+            sftp_only: true
+            password: ${{ secrets.SSH_PASS }}
