@@ -36,5 +36,5 @@ jobs:
             port: 22
             local_path: 'target/WarningPoints-1.0.jar'
             remote_path: '/plugins/WarningPoints-TEST.jar'
-            sftp_only: true
+            sftp_only: false
             password: ${{ secrets.SSH_PASS }}
