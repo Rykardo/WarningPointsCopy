@@ -41,7 +41,7 @@ jobs:
           password: ${{ env.SSH_PASS }}
           port: 22
           uploads: |
-            target/WarningPoints-1.0.jar => plugins/WarningPoints-TEST.jar
+            target/WarningPoints-1.0.jar => /plugins/WarningPoints-TEST.jar
 
       # - name: SFTP uploader
       #   uses: wangyucode/sftp-upload-action@v2.0.2
