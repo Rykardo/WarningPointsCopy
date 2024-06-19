@@ -66,12 +66,23 @@ jobs:
       #     "
 
 
-      - name: SFTP uploader
-        uses: wangyucode/sftp-upload-action@v2.0.2
+      # - name: SFTP uploader
+      #   uses: wangyucode/sftp-upload-action@v2.0.2
+      #   with:
+      #     host: ${{ env.SSH_HOST }}
+      #     password: ${{ env.SSH_PASS }}
+      #     username: ${{ env.SSH_USER }}
+      #     port: 2022
+      #     localDir: './target/${{env.JAR_FILENAME}}'
+      #     remoteDir: '/plugins'
+
+      - name: Deploy file
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
-          host: ${{ env.SSH_HOST }}
-          password: ${{ env.SSH_PASS }}
-          username: ${{ env.SSH_USER }}
-          port: 2022
-          localDir: 'target/${{env.JAR_FILENAME}}'
-          remoteDir: '/plugins'
+            username: ${{ env.SSH_USER }}
+            server: ${{ env.SSH_HOST }}
+            password: ${{ env.SSH_PASS }}
+            port: 2022
+            local_path: './target/${{env.JAR_FILENAME}}'
+            remote_path: '/plugins'
+            
