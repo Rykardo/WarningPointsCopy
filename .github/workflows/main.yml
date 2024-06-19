@@ -10,9 +10,12 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      SSH_USER: ${{ secrets.SSH_USER }}
-      SSH_HOST: ${{ secrets.SSH_HOST }}
-      SSH_PASS: ${{ secrets.SSH_PASS }}
+      # SSH_USER: ${{ secrets.SSH_USER }}
+      # SSH_HOST: ${{ secrets.SSH_HOST }}
+      # SSH_PASS: ${{ secrets.SSH_PASS }}
+      SFTP_USER: ${{ secrets.SSH_USER }}
+      SFTP_HOST: ${{ secrets.SSH_HOST }}
+      SFTP_PASS: ${{ secrets.SSH_PASS }}
       JAR_FILENAME: prueba.jar
 
     steps:
