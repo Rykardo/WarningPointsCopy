@@ -47,7 +47,8 @@ jobs:
 
       - name: Add host key to known hosts
         run: |
-          ssh-keyscan -t ED25519 ${{ env.SSH_HOST }} >> ~/.ssh/known_hosts
+          ssh-keygen -R ${{ env.SSH_HOST }}
+          ssh-keyscan ${{ env.SSH_HOST }} >> ~/.ssh/known_hosts
 
       - name: Install expect
         run: |
@@ -56,7 +57,7 @@ jobs:
       - name: Deploy to SFTP
         run: |
           expect -c "
-          spawn sftp -P 2022 ${{ env.SSH_USER }}@${{ env.SSH_HOST }}
+          spawn sftp -o \"StrictHostKeyChecking=no\" -P 2022 ${{ env.SSH_USER }}@${{ env.SSH_HOST }}
           expect \"password:\"
           send \"${{ env.SSH_PASS }}\r\"
           expect \"sftp>\"
