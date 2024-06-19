@@ -47,7 +47,6 @@ jobs:
 
       - name: Add host key to known hosts
         run: |
-          ssh-keygen -R ${{ env.SSH_HOST }}
           ssh-keyscan ${{ env.SSH_HOST }} >> ~/.ssh/known_hosts
 
       - name: Install expect
