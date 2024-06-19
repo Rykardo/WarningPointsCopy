@@ -53,7 +53,7 @@ jobs:
           expect \"password:\"
           send \"${{ env.SSH_PASS }}\r\"
           expect \"sftp>\"
-          send \"put target/WarningPoints-1.0.jar ./plugins\r\"
+          send \"put target/WarningPoints-1.0.jar plugins\r\"
           expect \"sftp>\"
           send \"bye\r\"
           "
