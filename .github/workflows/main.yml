@@ -83,6 +83,7 @@ jobs:
             server: ${{ env.SSH_HOST }}
             password: ${{ env.SSH_PASS }}
             port: 2022
-            local_path: './target/${{env.JAR_FILENAME}}'
+            local_path: '/target/${{env.JAR_FILENAME}}'
             remote_path: '/plugins'
+            verbose: true
             
