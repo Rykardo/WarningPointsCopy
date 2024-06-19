@@ -13,9 +13,9 @@ jobs:
       # SSH_USER: ${{ secrets.SSH_USER }}
       # SSH_HOST: ${{ secrets.SSH_HOST }}
       # SSH_PASS: ${{ secrets.SSH_PASS }}
-      SFTP_USER: ${{ secrets.SSH_USER }}
-      SFTP_HOST: ${{ secrets.SSH_HOST }}
-      SFTP_PASS: ${{ secrets.SSH_PASS }}
+      SSH_USER: ${{ secrets.SFTP_USER }}
+      SSH_HOST: ${{ secrets.SFTP_HOST }}
+      SSH_PASS: ${{ secrets.SFTP_PASS }}
       JAR_FILENAME: prueba.jar
 
     steps:
@@ -56,7 +56,7 @@ jobs:
       - name: Deploy to SFTP
         run: |
           expect -c "
-          spawn sftp ${{ env.SSH_USER }}@${{ env.SSH_HOST }}
+          spawn sftp -P 2022 ${{ env.SSH_USER }}@${{ env.SSH_HOST }}
           expect \"password:\"
           send \"${{ env.SSH_PASS }}\r\"
           expect \"sftp>\"
