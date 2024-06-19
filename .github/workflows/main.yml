@@ -13,6 +13,7 @@ jobs:
       SSH_USER: ${{ secrets.SSH_USER }}
       SSH_HOST: ${{ secrets.SSH_HOST }}
       SSH_PASS: ${{ secrets.SSH_PASS }}
+      JAR_FILENAME: prueba.jar
 
     steps:
       - name: check variables
@@ -33,6 +34,9 @@ jobs:
         run: |
           mvn clean package
 
+      - name: Rename JAR file
+        run: |
+          mv target/WarningPoints-1.0.jar target/${{env.JAR_FILENAME}}
 
       - name: Create SSH directory
         run: |
@@ -53,7 +57,7 @@ jobs:
           expect \"password:\"
           send \"${{ env.SSH_PASS }}\r\"
           expect \"sftp>\"
-          send \"put target/WarningPoints-1.0.jar plugins\r\"
+          send \"put target/${{env.JAR_FILENAME}} plugins\r\"
           expect \"sftp>\"
           send \"bye\r\"
           "
